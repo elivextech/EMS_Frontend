@@ -14,10 +14,12 @@ import ManageUsers from '../pages/ManageUsers';
 import ChangePassword from '../pages/ChangePassword';
 import AdminRoute from './AdminRoute';
 import AdminManagerRoute from './AdminManagerRoute';
+import PageTitleUpdater from '../components/PageTitleUpdater';
 
 const AppRouter = () => {
   return (
     <BrowserRouter>
+      <PageTitleUpdater />
       <AuthProvider>
         <Routes>
           {/* Public */}
