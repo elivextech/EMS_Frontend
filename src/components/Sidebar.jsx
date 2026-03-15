@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import textLogo from '../assets/Text Logo.svg';
 
 
 const navItems = [
@@ -80,13 +81,7 @@ const Sidebar = ({ isOpen, onClose }) => {
       {/* Logo */}
       <div className="mb-8 px-2 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-lg bg-blue-600 flex items-center justify-center shadow-lg shadow-blue-500/30 flex-shrink-0">
-            <span className="text-white font-bold text-base">E</span>
-          </div>
-          <div>
-            <p className="text-white font-bold text-sm leading-tight">Elivex</p>
-            <p className="text-gray-500 text-xs">Management System</p>
-          </div>
+          <img src={textLogo} alt="Elivex Logo" className="h-8 w-auto drop-shadow-md" />
         </div>
         {/* Close button — visible on mobile only */}
         <button
