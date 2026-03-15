@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import textLogo from '../assets/Text Logo.svg';
 
 const Login = () => {
   const { login, loading } = useAuth();
@@ -37,11 +38,8 @@ const Login = () => {
 
       <div className="relative w-full max-w-md">
         {/* Logo */}
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-blue-600 shadow-xl shadow-blue-500/30 mb-4">
-            <span className="text-white font-bold text-2xl">E</span>
-          </div>
-          <h1 className="text-2xl font-bold text-white">Elivex Management System</h1>
+        <div className="text-center mb-8 flex flex-col items-center justify-center">
+          <img src={textLogo} alt="Elivex Logo" className="h-16 w-auto drop-shadow-xl mb-3" />
           <p className="text-gray-500 mt-1 text-sm">Sign in to your admin account</p>
         </div>
 
