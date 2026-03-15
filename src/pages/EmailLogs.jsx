@@ -2,9 +2,13 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { fetchEmailLogs } from '../services/email.service';
 import { fetchAllTemplates } from '../services/template.service';
+import EmailQuotaBar from '../components/EmailQuotaBar';
+
+const TOTAL_QUOTA = 100;
 
 const EmailLogs = () => {
   const [logs, setLogs] = useState([]);
+  const [quota, setQuota] = useState({ used: 0, remaining: TOTAL_QUOTA });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
@@ -20,10 +24,14 @@ const EmailLogs = () => {
       ]);
 
       const emailLogs = logsResponse?.data?.logs || [];
+      // reaminingQuota = emails left today; Count = all-time total (not used for quota)
+      const remaining = logsResponse?.data?.reaminingQuota ?? TOTAL_QUOTA;
+      const usedToday = TOTAL_QUOTA - remaining;
+      setQuota({ used: usedToday, remaining });
       const templates = templatesResponse?.data?.templates || templatesResponse?.templates || [];
       const usersData = usersResponse?.data?.users || usersResponse?.data || usersResponse?.users || [];
       const usersList = Array.isArray(usersData) ? usersData : [];
-      
+
       // Create maps for quick lookup
       const templateMap = templates.reduce((acc, t) => {
         acc[t._id || t.id] = t.name || t.title || 'Unknown Template';
@@ -44,7 +52,7 @@ const EmailLogs = () => {
 
       // Sort by newest first just in case
       enrichedLogs.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-      
+
       setLogs(enrichedLogs);
     } catch (err) {
       setError('Failed to fetch email logs. Please try again later.');
@@ -78,7 +86,7 @@ const EmailLogs = () => {
           <h2 className="text-xl font-bold text-white">Email Logs</h2>
           <p className="text-gray-500 text-sm mt-0.5">Track and view all emails sent from your account.</p>
         </div>
-        
+
         <div className="flex items-center gap-2 sm:gap-3">
           <button
             onClick={loadLogs}
@@ -91,7 +99,7 @@ const EmailLogs = () => {
             </svg>
             <span className="hidden sm:inline">Refresh</span>
           </button>
-          
+
           <Link
             to="/emails/compose"
             className="btn-primary flex items-center gap-2 px-3 sm:px-4 py-2 text-sm flex-shrink-0 cursor-pointer"
@@ -103,6 +111,9 @@ const EmailLogs = () => {
           </Link>
         </div>
       </div>
+
+      {/* Daily Quota */}
+      <EmailQuotaBar usedEmails={quota.used} totalQuota={TOTAL_QUOTA} />
 
       {/* Content */}
       <div className="card p-0 overflow-hidden">
@@ -175,15 +186,13 @@ const EmailLogs = () => {
                       </span>
                     </td>
                     <td className="px-4 py-3.5 align-middle">
-                      <span className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[11px] font-medium uppercase tracking-wider border ${
-                        log.status === 'sent' ? 'bg-green-500/10 text-green-400 border-green-500/20' : 
-                        log.status === 'failed' ? 'bg-red-500/10 text-red-400 border-red-500/20' : 
-                        'bg-yellow-500/10 text-yellow-400 border-yellow-500/20'
-                      }`}>
-                        <span className={`w-1.5 h-1.5 rounded-full ${
-                          log.status === 'sent' ? 'bg-green-400' : 
+                      <span className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[11px] font-medium uppercase tracking-wider border ${log.status === 'sent' ? 'bg-green-500/10 text-green-400 border-green-500/20' :
+                        log.status === 'failed' ? 'bg-red-500/10 text-red-400 border-red-500/20' :
+                          'bg-yellow-500/10 text-yellow-400 border-yellow-500/20'
+                        }`}>
+                        <span className={`w-1.5 h-1.5 rounded-full ${log.status === 'sent' ? 'bg-green-400' :
                           log.status === 'failed' ? 'bg-red-400' : 'bg-yellow-400'
-                        }`} />
+                          }`} />
                         {log.status}
                       </span>
                     </td>

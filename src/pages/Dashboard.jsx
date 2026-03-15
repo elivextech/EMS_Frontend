@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useState, useEffect } from 'react';
 import { fetchAllTemplates } from '../services/template.service';
+import { fetchEmailLogs } from '../services/email.service';
 
 const StatCard = ({ label, value, icon, color, sub }) => (
   <div className="card flex items-center gap-4 sm:gap-5">
@@ -19,14 +20,19 @@ const StatCard = ({ label, value, icon, color, sub }) => (
 const Dashboard = () => {
   const { user } = useAuth();
   const [templateCount, setTemplateCount] = useState(0);
+  const [emailCount, setEmailCount] = useState(null);
 
   useEffect(() => {
     const loadStats = async () => {
       try {
-        const response = await fetchAllTemplates();
-        setTemplateCount(response?.data?.Count || response?.data?.templates?.length || 0);
+        const [templateRes, emailRes] = await Promise.all([
+          fetchAllTemplates().catch(() => null),
+          fetchEmailLogs().catch(() => null),
+        ]);
+        setTemplateCount(templateRes?.data?.Count || templateRes?.data?.templates?.length || 0);
+        setEmailCount(emailRes?.data?.Count ?? null);
       } catch (err) {
-        console.error("Failed to load template count:", err);
+        console.error("Failed to load stats:", err);
       }
     };
     loadStats();
@@ -54,7 +60,7 @@ const Dashboard = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         <StatCard
           label="Total Emails Sent"
-          value="—"
+          value={emailCount !== null ? emailCount.toLocaleString() : '—'}
           sub="All time"
           color="bg-blue-600/20"
           icon={

@@ -50,7 +50,7 @@ const Contacts = () => {
           <h2 className="text-xl font-bold text-white">Contact Submissions</h2>
           <p className="text-gray-500 text-sm mt-0.5">View messages received from your website contact form.</p>
         </div>
-        
+
         <button
           onClick={loadContacts}
           className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg bg-gray-800 hover:bg-gray-700 active:bg-gray-600 border border-gray-700 text-gray-300 text-sm transition-colors cursor-pointer"
@@ -109,8 +109,8 @@ const Contacts = () => {
               </thead>
               <tbody className="divide-y divide-gray-800/50">
                 {contacts.map((contact) => (
-                  <tr 
-                    key={contact._id || contact.id} 
+                  <tr
+                    key={contact._id || contact.id}
                     onClick={() => setSelectedContact(contact)}
                     className="hover:bg-gray-800/40 transition-colors group cursor-pointer"
                   >
@@ -145,7 +145,7 @@ const Contacts = () => {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           <div className="absolute inset-0 bg-gray-950/80 backdrop-blur-sm transition-opacity" onClick={() => setSelectedContact(null)} />
           <div className="relative w-full max-w-lg bg-gray-900 border border-gray-700 rounded-2xl shadow-2xl overflow-hidden animate-fade-in flex flex-col max-h-[90vh]">
-            
+
             {/* Modal Header */}
             <div className="px-6 py-4 border-b border-gray-800 flex items-center justify-between bg-gray-950/50 flex-shrink-0">
               <div className="flex items-center gap-3">
@@ -161,7 +161,7 @@ const Contacts = () => {
                   </a>
                 </div>
               </div>
-              <button 
+              <button
                 onClick={() => setSelectedContact(null)}
                 className="p-2 rounded-lg text-gray-500 hover:text-white hover:bg-gray-800 transition-colors self-start"
               >
@@ -173,7 +173,7 @@ const Contacts = () => {
 
             {/* Modal Body */}
             <div className="p-6 space-y-6 overflow-y-auto">
-              
+
               {/* Meta Info */}
               <div className="grid grid-cols-2 gap-4">
                 <div className="bg-gray-800/40 rounded-xl p-3 border border-gray-800">
@@ -205,7 +205,7 @@ const Contacts = () => {
 
             {/* Modal Footer */}
             <div className="px-6 py-4 border-t border-gray-800 bg-gray-950/50 flex justify-end flex-shrink-0">
-              <button 
+              <button
                 onClick={() => setSelectedContact(null)}
                 className="px-5 py-2 rounded-xl bg-gray-800 hover:bg-gray-700 text-white text-sm font-medium transition-colors"
               >

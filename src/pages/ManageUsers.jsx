@@ -213,11 +213,10 @@ const ManageUsers = () => {
     <div className="space-y-5 pb-6">
       {/* Toast */}
       {toast && (
-        <div className={`fixed top-4 right-4 z-[60] flex items-center gap-3 px-5 py-3 rounded-xl border shadow-2xl text-sm font-medium transition-all animate-fade-in ${
-          toast.type === 'success'
-            ? 'bg-green-500/10 border-green-500/30 text-green-300'
-            : 'bg-red-500/10 border-red-500/30 text-red-300'
-        }`}>
+        <div className={`fixed top-4 right-4 z-[60] flex items-center gap-3 px-5 py-3 rounded-xl border shadow-2xl text-sm font-medium transition-all animate-fade-in ${toast.type === 'success'
+          ? 'bg-green-500/10 border-green-500/30 text-green-300'
+          : 'bg-red-500/10 border-red-500/30 text-red-300'
+          }`}>
           {toast.type === 'success' ? (
             <svg className="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
@@ -244,7 +243,7 @@ const ManageUsers = () => {
             </div>
             <p className="text-gray-400 text-sm">View, edit, and remove system users.</p>
           </div>
-          
+
           <Link
             to="/register-user"
             className="btn-primary flex items-center gap-2 px-4 py-2 text-sm flex-shrink-0"

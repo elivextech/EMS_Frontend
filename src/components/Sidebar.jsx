@@ -130,17 +130,15 @@ const Sidebar = ({ isOpen, onClose }) => {
       {/* Mobile: slide-in overlay drawer */}
       {/* Backdrop */}
       <div
-        className={`lg:hidden fixed inset-0 z-40 bg-gray-950/70 backdrop-blur-sm transition-opacity duration-300 ${
-          isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-        }`}
+        className={`lg:hidden fixed inset-0 z-40 bg-gray-950/70 backdrop-blur-sm transition-opacity duration-300 ${isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+          }`}
         onClick={onClose}
         aria-hidden="true"
       />
       {/* Drawer */}
       <div
-        className={`lg:hidden fixed inset-y-0 left-0 z-50 flex flex-col w-64 transition-transform duration-300 ease-in-out ${
-          isOpen ? 'translate-x-0' : '-translate-x-full'
-        }`}
+        className={`lg:hidden fixed inset-y-0 left-0 z-50 flex flex-col w-64 transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : '-translate-x-full'
+          }`}
       >
         {sidebarContent}
       </div>

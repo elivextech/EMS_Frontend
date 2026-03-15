@@ -81,7 +81,7 @@ const Navbar = ({ onMenuClick }) => {
               <p className="text-gray-500 text-[10px] uppercase tracking-wider">{user.role}</p>
             </div>
             <svg className={`w-4 h-4 text-gray-400 transition-transform hidden sm:block ${dropdownOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
             </svg>
           </button>
         )}
@@ -108,9 +108,9 @@ const Navbar = ({ onMenuClick }) => {
               </svg>
               Change Password
             </Link>
-            
+
             <div className="h-px bg-gray-800 my-1 1wx px-4" />
-            
+
             <button
               onClick={() => { setDropdownOpen(false); handleLogout(); }}
               className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-red-400 hover:bg-red-500/10 transition-colors text-left"

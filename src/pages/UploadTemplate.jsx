@@ -133,8 +133,8 @@ const UploadTemplate = () => {
 
           {status && (
             <div className={`flex items-start gap-3 rounded-lg px-4 py-3 text-sm border ${status.type === 'success'
-                ? 'bg-green-500/10 border-green-500/30 text-green-400'
-                : 'bg-red-500/10 border-red-500/30 text-red-400'
+              ? 'bg-green-500/10 border-green-500/30 text-green-400'
+              : 'bg-red-500/10 border-red-500/30 text-red-400'
               }`}>
               <svg className="w-4 h-4 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                 {status.type === 'success' ? (
