@@ -73,10 +73,7 @@ const EmailQuotaBar = ({ usedEmails = 0, totalQuota = 100 }) => {
           <div
             className={`h-full rounded-full bg-gradient-to-r ${barColor} shadow-lg ${glowColor} transition-all duration-1000 ease-out`}
             style={{ width: `${percentage}%` }}
-          >
-            {/* Shimmer effect */}
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer rounded-full" />
-          </div>
+          />
         </div>
 
         {/* Marker at 80% - warning zone */}
